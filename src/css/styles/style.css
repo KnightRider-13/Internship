@@ -13219,6 +13219,7 @@ a.read_more i {
 
 .nft_coll {
   text-align: center;
+  margin-left: 20px;
 }
 
 .nft_coll_info {
@@ -13264,14 +13265,64 @@ a.read_more i {
 .nft_coll_pp i {
   font-size: 10px;
   color: #ffffff;
-  background: #333;
+  background-color: #8364E2;
   border-radius: 100%;
   -moz-border-radius: 100%;
   -webkit-border-radius: 100%;
   padding: 3px;
   position: absolute;
-  bottom: 4px;
-  right: 5px;
+  bottom: 5px;
+  right: 7px;
+}
+
+.slick-prev:before, .slick-next:before {
+  color: #8364E2;
+  font-size: 30px;
+}
+
+.skeleton{
+  background-color: rgb(227, 227, 227);
+  position: relative;
+  overflow: hidden;
+}
+.skeleton::before{
+  content: '';
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-image: linear-gradient(90deg, hsla(0, 0%, 100%, 0), hsla(0, 0%, 100%, 0.2) 20%, hsla(0, 0%, 100%, 0.5) 60%, hsla(0, 0%, 100%, 0));
+  animation: shimmer 2s infinite linear;
+  transform: translateX(-100%);
+}
+.authorImage__loading{
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+.header__loading {
+    height: 20px;
+    width: 100%;
+    max-width: 80px;
+    margin: 0 auto;
+    margin-bottom: 12px;
+  }
+ .span__loading{
+  height: 20px;
+  width: 100%;
+  max-width: 50px;
+  margin: 0 auto;
+ } 
+
+ @keyframes shimmer {
+  0% {
+    background-position: -1000px 0;
+  }
+  100% {
+    background-position: 1000px 0;
+  }
 }
 
 .author_list {
