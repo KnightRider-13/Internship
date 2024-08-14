@@ -13315,6 +13315,22 @@ a.read_more i {
   max-width: 50px;
   margin: 0 auto;
  } 
+ .item__price--loading{
+  height: 15px;
+  width: 100%;
+  max-width: 50px;
+ }
+ .item__like--loading{
+  height: 20px;
+  width: 100%;
+  max-width: 32px;
+ }
+ .header--loading{
+  height: 25px;
+  width: 100%;
+  max-width: 160px;
+  margin: 8px 0;
+ }
 
  @keyframes shimmer {
   0% {
@@ -15196,7 +15212,7 @@ a.btn-slider:hover {
   margin: 0 6px;
   display: inline-block;
   zoom: 1;
-  *display: inline;
+  display: inline;
 }
 
 .testi-slider .flex-control-paging li a {
