@@ -13286,7 +13286,7 @@ a.read_more i {
   overflow: hidden;
 }
 .skeleton::before{
-  content: '';
+  content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -13319,6 +13319,12 @@ a.read_more i {
   height: 15px;
   width: 100%;
   max-width: 50px;
+ }
+ .item__author--loading{
+  height: 15px;
+  width: 100%;
+  max-width: 100px;
+  margin-bottom: 6px;
  }
  .item__like--loading{
   height: 20px;
@@ -13363,6 +13369,11 @@ a.read_more i {
   height: auto;
   margin-left: 10px;
   z-index: 10;
+}
+.authorImageSeller__loading{
+  height: 50px;
+  width: 50px;
+  border-radius: 100%;
 }
 
 .author_list_pp img {
