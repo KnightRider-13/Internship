@@ -76,7 +76,7 @@ const HotCollections = () => {
           <Slider {...sliderSettings}>
             {isLoaded
               ? collectionData.map((nft) => (
-                  <div className="nft containers" key={nft.id}>
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={nft.id}>
                     <div className="nft_coll">
                       <div className="nft_wrap">
                         <Link to={`/item-details/${nft.nftId}`}>
@@ -107,7 +107,7 @@ const HotCollections = () => {
                   </div>
                 ))
               : new Array(4).fill(0).map((_, index) => (
-                  <div className="nft containers" key={index}>
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={index}>
                     <div className="nft_coll">
                       <div className="nft_wrap skeleton">
                       </div>
