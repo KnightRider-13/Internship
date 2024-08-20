@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import NftTile from "../UI/NftTile";
+import Skeleton from "../UI/Skeleton";
 
 const ExploreItems = () => {
   const dataURL =
@@ -23,7 +24,7 @@ const ExploreItems = () => {
     const filterValue = event.target.value;
     const { data } = await axios.get(`${dataURL}?filter=${filterValue}`);
     setExploreData(data);
-  }
+  };
 
   return (
     <>
@@ -46,31 +47,22 @@ const ExploreItems = () => {
             </div>
           ))
         : new Array(8).fill(0).map((_, index) => (
-          <div
-          className="col-lg-3 col-md-6 col-sm-6 col-xs-12"
-          key={index}
-        >
-          <div className="nft__item">
-            <div className="author_list_pp skeleton authorImage__loading"></div>
-            <div className="nft__item_wrap skeleton"></div>
-            <div className="nft__item_info">
-              <div className="header--loading skeleton"></div>
-              <div className="nft__item_price item__price--loading skeleton"></div>
-              <div className="nft__item_like item__like--loading skeleton"></div>
+            <div className="col-lg-3 col-md-6 col-sm-6 col-xs-12" key={index}>
+              <Skeleton />
             </div>
-          </div>
-        </div>
           ))}
       <div className="col-md-12 text-center">
         {slice < exploreData.length ? (
-            <button
-              id="loadmore"
-              className="btn-main lead"
-              onClick={() => {setSlice(slice + 4)}}
-            >
-              Load more
-            </button>
-          ) : null}
+          <button
+            id="loadmore"
+            className="btn-main lead"
+            onClick={() => {
+              setSlice(slice + 4);
+            }}
+          >
+            Load more
+          </button>
+        ) : null}
       </div>
     </>
   );

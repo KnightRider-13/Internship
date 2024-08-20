@@ -5,6 +5,7 @@ import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import "../../css/styles/style.css";
 import NftTile from "../UI/NftTile";
+import Skeleton from "../UI/Skeleton";
 
 const NewItems = () => {
   const dataURL =
@@ -74,28 +75,16 @@ const NewItems = () => {
             </div>
           </div>
           <Slider {...sliderSettings}>
-            {isLoaded ? (
-              newItemData.map((nft) => 
-                <NftTile nfts={nft}key={nft.id} />
-              )
-            ) : (
-              new Array(4).fill(0).map((_, index) => (
-                <div
-                  className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
-                  key={index}
-                >
-                  <div className="nft__item">
-                    <div className="author_list_pp skeleton authorImage__loading"></div>
-                    <div className="nft__item_wrap skeleton"></div>
-                    <div className="nft__item_info">
-                      <div className="header--loading skeleton"></div>
-                      <div className="nft__item_price item__price--loading skeleton"></div>
-                      <div className="nft__item_like item__like--loading skeleton"></div>
-                    </div>
+            {isLoaded
+              ? newItemData.map((nft) => <NftTile nfts={nft} key={nft.id} />)
+              : new Array(4).fill(0).map((_, index) => (
+                  <div
+                    className="col-lg-12 col-md-12 col-sm-12 col-xs-12"
+                    key={index}
+                  >
+                    <Skeleton />
                   </div>
-                </div>
-              ))
-            )}
+                ))}
           </Slider>
         </div>
       </div>
