@@ -16796,6 +16796,42 @@ img {
   height: 100%;
   width: 100%;
 }
+.nft__image--loading{
+  height: auto;
+  max-height: 600px;
+  width: 100%;
+  max-width: 400px;
+}
+.nft__authorImage--loading{
+  height: 60px;
+  width: 60px;
+  border-radius: 100%;
+}
+.nft__header--loading{
+    height: 45px;
+    width: 100%;
+    max-width: 300px;
+    margin-bottom: 12px;
+  }
+ .item_info_views{
+  height: 30px;
+  width: 100%;
+  max-width: 50px;
+ } 
+ .nft__price--loading{
+  height: 40px;
+  width: 100%;
+  max-width: 100px;
+ }
+ .nft__author--loading{
+  height: 25px;
+  width: 100%;
+  max-width: 140px;
+  margin-left: 100px;
+ }
+ .nft__items--loading{
+  margin-bottom: 30px;
+ }
 
 #filter-items {
   background-color: #fff;
