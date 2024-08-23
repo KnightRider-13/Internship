@@ -21,7 +21,7 @@ const TopSellers = () => {
   return (
     <section id="section-popular" className="pb-5">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Top Sellers</h2>
@@ -52,7 +52,7 @@ const TopSellers = () => {
                     </li>
                   ))
                 : new Array(12).fill(0).map((_, index) => (
-                    <li key={index}>
+                    <li key={index} data-aos="fade-up">
                       <div className="author_list_pp authorImageSeller__loading skeleton"></div>
                       <div className="author_list_info">
                         <span className="item__author--loading skeleton"></span>

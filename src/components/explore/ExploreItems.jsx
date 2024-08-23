@@ -40,10 +40,10 @@ const ExploreItems = () => {
         ? exploreData.slice(0, slice).map((nft) => (
             <div
               key={nft.id}
-              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12"
+              className="d-item col-lg-3 col-md-6 col-sm-6 col-xs-12" 
               style={{ display: "block", backgroundSize: "cover" }}
             >
-              <NftTile nfts={nft} />
+              <div data-aos="fade-left"><NftTile nfts={nft} /></div>
             </div>
           ))
         : new Array(8).fill(0).map((_, index) => (

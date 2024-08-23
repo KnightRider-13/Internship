@@ -66,7 +66,7 @@ const HotCollections = () => {
   return (
     <section id="section-collections" className="no-bottom">
       <div className="container">
-        <div className="row">
+        <div className="row" data-aos="fade-up">
           <div className="col-lg-12">
             <div className="text-center">
               <h2>Hot Collections</h2>
@@ -107,7 +107,7 @@ const HotCollections = () => {
                   </div>
                 ))
               : new Array(4).fill(0).map((_, index) => (
-                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={index}>
+                  <div className="col-lg-12 col-md-12 col-sm-12 col-xs-12" key={index} data-aos="fade-up">
                     <div className="nft_coll">
                       <div className="nft_wrap skeleton">
                       </div>
