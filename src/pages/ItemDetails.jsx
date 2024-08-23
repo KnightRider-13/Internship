@@ -30,7 +30,7 @@ const ItemDetails = () => {
           <div className="container">
             {isLoaded ? (
               nftDataArray.map((nft) => (
-                <div className="row">
+                <div className="row" key={nft.id} data-aos="fade-left">
                   <div className="col-md-6 text-center">
                     <img
                       src={nft.nftImage}
@@ -111,7 +111,7 @@ const ItemDetails = () => {
                 </div>
               ))
             ) : (
-              <div className="row">
+              <div className="row" data-aos="fade-left">
                 <div className="col-md-6 text-center nft__image--loading skeleton"></div>
                 <div className="col-md-6">
                   <div className="item_info">
