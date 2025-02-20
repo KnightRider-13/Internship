@@ -1,70 +1,161 @@
-# Getting Started with Create React App
+# NFT Marketplace (Ultraverse)
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+An online NFT marketplace built with React and CSS, where users can explore and purchase NFTs. The platform dynamically pulls NFT data from an API and displays essential details like title, owner, creator, prices, likes, and a countdown timer for active sales. The marketplace also features an Explore page displaying all available NFTs and an Info page providing detailed information for each individual NFT.
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+- [Description📝](#description)
+- [Features✨](#features)
+- [Tech Stack🛠️](#tech-stack)
+- [Screenshots 📸](#screenshots)
+- [Code Highlights🔍](#code-highlights)
+- [Installation🛠️](#installation)
+- [Future Improvements🛠️](#future-improvements)
+- [Contributing🤝](#contributing)
+- [Contact📧](#contact)
+- [License⚖️](#license)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Features
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- Dynamic Data Fetching: NFTs are fetched in real-time from an external API.
+- NFT Explore Page: View and explore all available NFTs in a dedicated page.
+- NFT Info Page: Access detailed information for individual NFTs.
+- Sales Timer: A countdown timer for NFTs on sale.
+- Interactive Animations: Enhanced user experience with animations.
+- Filtering Options: Filter NFTs by attributes such as price, popularity, etc.
 
-### `npm test`
+## Tech Stack
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+React: For building the user interface and managing application state.
 
-### `npm run build`
+CSS: For styling the components and animations.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+API Integration: Fetches data for NFTs from an external API.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Screenshots
 
-### `npm run eject`
+<img width="548" alt="Ultraverse Home" src="https://github.com/user-attachments/assets/9e464caa-d5ce-4f0b-aaf4-bf934059312c" />
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+<img width="547" alt="NFT's" src="https://github.com/user-attachments/assets/23fd49ca-5021-4943-b968-08090239f96d" />
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+<img width="528" alt="Explore NFT's" src="https://github.com/user-attachments/assets/5ea5ccee-f509-47ab-89d7-f956c3ed1918" />
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+<img width="522" alt="NFT Info" src="https://github.com/user-attachments/assets/98485c2c-e0b2-4b5a-bedc-f92c9cab1c61" />
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
 
-## Learn More
+## Code Highlights
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+### 1. Fetching Data
+This snippet demonstrates how the app dynamically fetches NFT data from an API and updates the UI
+```javascript
+const ExploreItems = () => {
+  const dataURL =
+    "https://us-central1-nft-cloud-functions.cloudfunctions.net/explore";
+  const [exploreData, setExploreData] = useState([]);
+  const [isLoaded, setIsLoaded] = useState(false);
+  const [slice, setSlice] = useState(8);
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+  useEffect(() => {
+    const getExploreData = async () => {
+      const { data } = await axios.get(dataURL);
+      setExploreData(data);
+      setIsLoaded(true);
+    };
 
-### Code Splitting
+    getExploreData();
+  }, []);
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+  const filterNfts = async (event) => {
+    const filterValue = event.target.value;
+    const { data } = await axios.get(`${dataURL}?filter=${filterValue}`);
+    setExploreData(data);
+  };
+};
+```
+### 2. Animations
+Animations are implemented using AOS (Animate On Scroll) for smooth transitions:
+```javascript
+<div data-aos="fade-up"></div>
+```
 
-### Analyzing the Bundle Size
+### 3. Timer Component
+The timer component dynamically calculates and displays the time remaining for an NFT sale:
+```javascript
+import React, { useEffect, useRef, useState } from "react";
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+function Timer({ expiryDate }) {
+  const [countDown, setCountDown] = useState("");
+  const intervalId = useRef(null);
 
-### Making a Progressive Web App
+  const updateCountdown = () => {
+    const currentTime = Date.now();
+    const timeRemaining = expiryDate - currentTime;
+    if (timeRemaining < 1) {
+      setCountDown("Expired");
+      clearInterval(intervalId.current);
+    } else {
+      const nftExpiryDateSecs = Math.floor((timeRemaining / 1000) % 60);
+      const nftExpiryDateMinutes = Math.floor(timeRemaining / 1000 / 60) % 60;
+      const nftExpiryDateHours = Math.floor(timeRemaining / 1000 / 60 / 60);
+      setCountDown(
+        `${nftExpiryDateHours}h ${nftExpiryDateMinutes}m ${nftExpiryDateSecs}s`
+      );
+    }
+  };
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+  useEffect(() => {
+    intervalId.current = setInterval(updateCountdown, 1000);
+    updateCountdown();
+    return () => clearInterval(intervalId.current);
+  }, []);
 
-### Advanced Configuration
+  return <div>{countDown}</div>;
+}
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+export default Timer;
+```
 
-### Deployment
+## Installation
+### 1. Clone the repository:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+```bash
+git clone https://github.com/KnightRider-13/Internship.git
+```
+### 2. Install dependencies: 
+  ```bash
+   npm install
+  ```
+ 
+### 3. Start the development server: 
+  ```bash
+   npm start
+  ```
+This will open the application in your browser at http://localhost:3000.
 
-### `npm run build` fails to minify
+## Future Improvements
+Add more filtering options, such as pricing or ratings.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Include a contact form with backend support.
+
+## Contributing
+
+Contributions are welcome! To contribute: 
+
+Fork the repository. 
+
+Create a new branch (git checkout -b feature/YourFeature). 
+
+Commit your changes (git commit -m 'Add YourFeature'). 
+
+Push to the branch (git push origin feature/YourFeature). 
+
+Create a pull request. 
+
+## Contact
+Ismaa'eel – www.linkedin.com/in/ismaaeel-fahmay – fahmay17@gmail.com
+
+## License
+This project does not have a license. If you'd like to use the code, please contact me for permission.
